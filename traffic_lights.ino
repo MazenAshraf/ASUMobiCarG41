@@ -1,8 +1,11 @@
+byte red=13;
+byte yellow=12;
+byte green=11;
 void setup() {
   // put your setup code here, to run once:
-pinMode(13,OUTPUT);
-pinMode(12,OUTPUT);
-pinMode(11,OUTPUT);
+pinMode(red,OUTPUT);
+pinMode(yello,OUTPUT);
+pinMode(green,OUTPUT);
 
 }
 
