@@ -7,3 +7,12 @@ const int enb = 5;
 const int ledright=12;
 const int ledleft=3;
 char readchar;
+int volt=255;
+void setup()
+{
+Serial.begin(9600);
+pinMode(in1, OUTPUT);//left side 
+pinMode(in2, OUTPUT);//left 
+pinMode(in3, OUTPUT);//right 
+pinMode(in4, OUTPUT);//right 
+pinMode(ena, OUTPUT);//enable a  left
