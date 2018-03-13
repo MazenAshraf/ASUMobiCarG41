@@ -55,3 +55,17 @@ if(readchar=='R'){
    }
    if(readchar=='L'){
    analogWrite(ena,volt);
+digitalWrite(in1,HIGH);
+  digitalWrite(in2,LOW);
+  digitalWrite(in3,LOW);
+  digitalWrite(in4,LOW);
+  }
+   if(readchar=='s'){
+  digitalWrite(in1,LOW);
+  digitalWrite(in2,LOW);
+  digitalWrite(in3,LOW);
+  digitalWrite(in4,LOW);
+  }
+ 
+}
+}
