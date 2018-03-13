@@ -6,3 +6,4 @@ const int ena = 10 ;
 const int enb = 5;
 const int ledright=12;
 const int ledleft=3;
+char readchar;
