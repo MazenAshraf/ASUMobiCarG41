@@ -16,3 +16,15 @@ pinMode(in2, OUTPUT);//left
 pinMode(in3, OUTPUT);//right 
 pinMode(in4, OUTPUT);//right 
 pinMode(ena, OUTPUT);//enable a  left
+pinMode(enb, OUTPUT);//enable b   right
+
+}
+void loop()
+{
+if(Serial.available()>0)
+{
+readchar=Serial.read();
+if(readchar=='H'){
+    volt=255;}
+  if(readchar=='L'){
+    volt=160;}
