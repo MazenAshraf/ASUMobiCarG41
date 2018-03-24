@@ -8,6 +8,11 @@ const int ledright=12;
 const int ledleft=3;
 char readchar;
 int volt=255;
+const int trigPin = 11;
+const int echoPin = 12;
+// defines variables
+long duration;
+int distance;
 void setup()
 {
 Serial.begin(9600);
@@ -17,6 +22,8 @@ pinMode(in3, OUTPUT);//right
 pinMode(in4, OUTPUT);//right 
 pinMode(ena, OUTPUT);//enable a  left
 pinMode(enb, OUTPUT);//enable b   right
+pinMode(trigPin, OUTPUT); // Sets the trigPin as an Output
+pinMode(echoPin, INPUT); // Sets the echoPin as an Input
 
 }
 void loop()
