@@ -174,3 +174,54 @@ if(right_sen.read() >lineStandard)
           }
           
         }
+
+ if(center_sen.read() > lineStandard && right_sen.read() > lineStandard && left_sen.read() <lineStandard)
+        {
+          //right
+                 {
+   analogWrite(enb,volt);
+  digitalWrite(in1,LOW);
+  digitalWrite(in2,LOW);
+  digitalWrite(in3,HIGH);
+  digitalWrite(in4,LOW);
+   }
+          while(1){
+          //right
+                       {
+   analogWrite(enb,volt);
+  digitalWrite(in1,LOW);
+  digitalWrite(in2,LOW);
+  digitalWrite(in3,HIGH);
+  digitalWrite(in4,LOW);
+   }
+          
+          if(center_sen.read() > lineStandard)
+              break;  
+          }
+        }
+      if(center_sen.read() < lineStandard && right_sen.read() < lineStandard && left_sen.read() >lineStandard)
+        {
+          while(1){
+          //left
+          {
+   analogWrite(ena,volt);
+  digitalWrite(in1,HIGH);
+  digitalWrite(in2,LOW);
+  digitalWrite(in3,LOW);
+  digitalWrite(in4,LOW);
+  }
+          if(center_sen.read() > lineStandard)
+              break;  
+          }
+        }
+      if(center_sen.read() > lineStandard && right_sen.read() < lineStandard && left_sen.read() >lineStandard)
+      {
+          while(1){
+          //left
+          {
+   analogWrite(ena,volt);
+  digitalWrite(in1,HIGH);
+  digitalWrite(in2,LOW);
+  digitalWrite(in3,LOW);
+  digitalWrite(in4,LOW);
+  }
