@@ -112,3 +112,64 @@ if(S3 && !S2 && !S1) //move right
         if(S3 && S2 && S1) //Stop
 {
   Serial. println( "low right" ) ;
+ Left();
+        if(S3 && S2 && S1) //Stop
+{
+  Serial. println( "low right" ) ;
+  Left();
+  }
+}
+ 
+if(S3 && S2 && !S1) //move right
+{
+  Serial. println( "right" ) ;
+  Left();
+      if(S3 && S2 && S1) //Stop
+{
+  Serial. println( "right" ) ;
+  Left();
+ 
+  }
+}
+ 
+if(!S3 && !S2 && S1) //move left
+{
+ 
+  Serial. println( "low left" ) ;
+  Right();
+    if(S3 && S2 && S1) //Stop
+{
+  Serial. println( "low left" ) ;
+  Right();
+  }
+}
+ 
+if(!S3 && S2 && S1) //move left
+{
+  Serial. println( "left" ) ;
+  Right();
+  if(S3 && S2 && S1) //Stop
+{
+  Serial. println( "left" ) ;
+  Right();
+ 
+  }
+}
+ 
+if(!S3 && !S2 && !S1) //Stop
+{
+  Serial. println( "forward" ) ;
+Forward();
+if(S3 && S2 && S1) //Stop
+ 
+{
+  Serial. println( "forward" ) ;
+Forward();
+}
+ 
+ 
+}
+ 
+ 
+ 
+}
