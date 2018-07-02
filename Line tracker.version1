@@ -1,257 +1,57 @@
-#include <RedBot.h>
-RedBotSensor left_sen = RedBotSensor(A3);   
-RedBotSensor center_sen = RedBotSensor(A4); 
-RedBotSensor right_sen = RedBotSensor(A5);
-
-const int in1= 9 ;
-const int in2 = 8 ;
-const int in3 = 7;
-const int in4 = 6;
-const int ena = 10 ;
-const int enb = 5;
-const int ledright=12;
-const int ledleft=3;
-char readchar;
-int volt=255;
-const int trigPin = 11;
-const int echoPin = 12;
-int lineStandard = 512;
-// defines variables
-long duration;
-int distance;
-void setup()
-{
-Serial.begin(9600);
-pinMode(in1, OUTPUT);//left side 
-pinMode(in2, OUTPUT);//left 
-pinMode(in3, OUTPUT);//right 
-pinMode(in4, OUTPUT);//right 
-pinMode(ena, OUTPUT);//enable a  left
-pinMode(enb, OUTPUT);//enable b   right
-pinMode(trigPin, OUTPUT); // Sets the trigPin as an Output
-pinMode(echoPin, INPUT); // Sets the echoPin as an Input
-Serial.begin(9600); // Starts the serial communication
-
+void Forward(), Backward(), Right(), Left(), Stop(),  Follower();
+float ReadPing ();
+const int motorA1 = 9;
+const int motorA2 = 8;
+const int motorB1 = 7;
+const int motorB2 = 6;
+const int enA = 10;
+const int enB = 5;
+int Velocity= 200;
+int S1,S2,S3;
+ 
+ 
+void setup() {
+  Serial.begin(9600);
+pinMode(motorA1, OUTPUT);
+pinMode(motorA2, OUTPUT);
+pinMode(motorB1, OUTPUT);
+pinMode(motorB2, OUTPUT);
+pinMode(enA, OUTPUT);
+pinMode(enB, OUTPUT);
+pinMode(S1, INPUT);
+pinMode(S2, INPUT);
+pinMode(S3,INPUT);
+ 
 }
-void loop()
-{
-  digitalWrite(trigPin, LOW);
-delayMicroseconds(2);
-// Sets the trigPin on HIGH state for 10 micro seconds
-digitalWrite(trigPin, HIGH);
-delayMicroseconds(10);
-digitalWrite(trigPin, LOW);
-// Reads the echoPin, returns the sound wave travel time in microseconds
-duration = pulseIn(echoPin, HIGH);
-// Calculating the distance
-distance= duration*0.034/2;
-if(distance<= 12)
-{
-  analogWrite(ena,volt);
-   analogWrite(enb,volt);
-  digitalWrite(in1,LOW);
-  digitalWrite(in2,LOW);
-  digitalWrite(in3,LOW);
-  digitalWrite(in4,LOW);
+ 
+void loop() {
+ 
+ 
+S1 = digitalRead(2);
+S2 = digitalRead(4);
+S3 = digitalRead(3);
+ 
+ 
+Follower();
+ 
+ 
+ 
 }
-  else {
-if(Serial.available()>0)
+void Forward ()
 {
-readchar=Serial.read();
-if(readchar=='H'){
-    volt=255;}
-  if(readchar=='L'){
-    volt=160;}
-     if(readchar=='M'){
-    volt=190;}
-  if(readchar=='F'){
-   analogWrite(ena,volt);
-   analogWrite(enb,volt);
-  digitalWrite(in1,HIGH);
-  digitalWrite(in2,LOW);
-  digitalWrite(in3,HIGH);
-  digitalWrite(in4,LOW);
- }
-if(readchar=='B'){
-   analogWrite(ena,volt);
-   analogWrite(enb,volt);
-  digitalWrite(in1,LOW);
-  digitalWrite(in2,HIGH);
-  digitalWrite(in3,LOW);
-  digitalWrite(in4,HIGH);
-  }
-   if(readchar=='R'){
-   analogWrite(enb,volt);
-  digitalWrite(in1,LOW);
-  digitalWrite(in2,LOW);
-  digitalWrite(in3,HIGH);
-  digitalWrite(in4,LOW);
-   }
-   if(readchar=='L'){
-   analogWrite(ena,volt);
-  digitalWrite(in1,HIGH);
-  digitalWrite(in2,LOW);
-  digitalWrite(in3,LOW);
-  digitalWrite(in4,LOW);
-  }
-   if(readchar=='s'){
-  digitalWrite(in1,LOW);
-  digitalWrite(in2,LOW);
-  digitalWrite(in3,LOW);
-  digitalWrite(in4,LOW);
-  }
+ 
+analogWrite(enA, Velocity);
+analogWrite(enB, Velocity);
+digitalWrite(motorA1, HIGH);
+digitalWrite(motorA2, LOW);
+digitalWrite(motorB1, HIGH);
+digitalWrite(motorB2, LOW);
 }
-  }
-  if(center_sen.read() > lineStandard && right_sen.read() < lineStandard && left_sen.read() <lineStandard)
-   
-      {
-      //FORWARD
-       analogWrite(ena,volt);
-   analogWrite(enb,volt);
-  digitalWrite(in1,HIGH);
-  digitalWrite(in2,LOW);
-  digitalWrite(in3,HIGH);
-  digitalWrite(in4,LOW);
-      }
-      if(center_sen.read() < lineStandard && right_sen.read() < lineStandard && left_sen.read() <lineStandard)
-        {
-          //forward()
-        { 
-          analogWrite(ena,volt);
-  analogWrite(enb,volt);
-  digitalWrite(in1,HIGH);
-  digitalWrite(in2,LOW);
-  digitalWrite(in3,HIGH);
-  digitalWrite(in4,LOW);
-        }
-          if(left_sen.read() >lineStandard)
-          {
-            while(1){
-           // left();
-           {
-            analogWrite(ena,volt);
-  digitalWrite(in1,HIGH);
-  digitalWrite(in2,LOW);
-  digitalWrite(in3,LOW);
-  digitalWrite(in4,LOW);
-           }
-            if(center_sen.read() > lineStandard)
-              break;
-            }
-          }
-if(right_sen.read() >lineStandard)
-          {
-            while(1){
-            //right();
-            {
-   analogWrite(enb,volt);
-  digitalWrite(in1,LOW);
-  digitalWrite(in2,LOW);
-  digitalWrite(in3,HIGH);
-  digitalWrite(in4,LOW);
-   }
-            
-            if(center_sen.read() > lineStandard)
-              break;
-            }
-          }
-
-           if(center_sen.read() < lineStandard && right_sen.read() > lineStandard && left_sen.read() <lineStandard)
-        {
-         //right
-     
-          while(1){
-         // right();
-                {
-   analogWrite(enb,volt);
-  digitalWrite(in1,LOW);
-  digitalWrite(in2,LOW);
-  digitalWrite(in3,HIGH);
-  digitalWrite(in4,LOW);
-   }
-          if(center_sen.read() > lineStandard)
-              break;  
-          }
-          
-        }
-
- if(center_sen.read() > lineStandard && right_sen.read() > lineStandard && left_sen.read() <lineStandard)
-        {
-          //right
-                 {
-   analogWrite(enb,volt);
-  digitalWrite(in1,LOW);
-  digitalWrite(in2,LOW);
-  digitalWrite(in3,HIGH);
-  digitalWrite(in4,LOW);
-   }
-          while(1){
-          //right
-                       {
-   analogWrite(enb,volt);
-  digitalWrite(in1,LOW);
-  digitalWrite(in2,LOW);
-  digitalWrite(in3,HIGH);
-  digitalWrite(in4,LOW);
-   }
-          
-          if(center_sen.read() > lineStandard)
-              break;  
-          }
-        }
-      if(center_sen.read() < lineStandard && right_sen.read() < lineStandard && left_sen.read() >lineStandard)
-        {
-          while(1){
-          //left
-          {
-   analogWrite(ena,volt);
-  digitalWrite(in1,HIGH);
-  digitalWrite(in2,LOW);
-  digitalWrite(in3,LOW);
-  digitalWrite(in4,LOW);
-  }
-          if(center_sen.read() > lineStandard)
-              break;  
-          }
-        }
-      if(center_sen.read() > lineStandard && right_sen.read() < lineStandard && left_sen.read() >lineStandard)
-      {
-          while(1){
-          //left
-          {
-   analogWrite(ena,volt);
-  digitalWrite(in1,HIGH);
-  digitalWrite(in2,LOW);
-  digitalWrite(in3,LOW);
-  digitalWrite(in4,LOW);
-  }
-if(center_sen.read() > lineStandard)
-              break;  
-          }  
-      }  
-       if(center_sen.read() > lineStandard && right_sen.read() > lineStandard && left_sen.read() > lineStandard)
-      {
-          //forward
-          {
-   analogWrite(ena,volt);
-   analogWrite(enb,volt);
-  digitalWrite(in1,HIGH);
-  digitalWrite(in2,LOW);
-  digitalWrite(in3,HIGH);
-  digitalWrite(in4,LOW);
- } 
-          if(center_sen.read() < lineStandard && right_sen.read() < lineStandard && left_sen.read() <lineStandard)
-          {
-            //S
-    {
-  digitalWrite(in1,LOW);
-  digitalWrite(in2,LOW);
-  digitalWrite(in3,LOW);
-  digitalWrite(in4,LOW);
-  }
-           
-          }
-      }
-         
-      }
-    }
+ 
+void Backward ()
+{
+ 
+analogWrite(enA, Velocity);
+analogWrite(enB, Velocity);
+digitalWrite(motorA1, LOW);
+digitalWrite(motorA2, HIGH);
