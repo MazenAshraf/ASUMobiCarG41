@@ -101,4 +101,45 @@ void MoveForward(int steps, int mspeed)
   
   analogWrite(ena, 0);
   analogWrite(enb, 0);
+  counter_A = 0;  
+ 
+}
+ 
+
+
+void MoveReverse(int steps, int mspeed) 
+{
+   counter_A = 0;  
+  
+   
+  Backward();
+   
+  
+   while (steps > counter_A ) {
+   
+    if (steps > counter_A) {
+    analogWrite(ena, mspeed);
+    } else {
+    analogWrite(ena, 0);
+    analogWrite(enb, 0);
+
+    } 
+  
+  
+    }
+    
+
+  Stop();
+  counter_A = 0; 
+ 
+}
+int distoint=0;
+  int dis=0;
+  String distance;
+
+void setup()
+{
+Serial.begin(9600);
+pinMode(in1, OUTPUT);//left side 
+pinMode(in2, OUTPUT);//left 
 
