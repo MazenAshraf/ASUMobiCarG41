@@ -63,4 +63,42 @@ volatile int counter_A = 0;
 
 
  void ISR_countA()  
+{counter_A++;  // increment Motor A counter value
+} 
+ 
+
+int CMtoSteps(float cm) {
+ 
+  int result;  
+  float circumference = (wheeldiameter * 3.14) / 10; 
+  float cm_step = circumference / stepcount;  
+  
+  float f_result = cm / cm_step;  
+  result = (int) f_result; 
+  
+  return result;  
+ Serial.println("result");
+ Serial.println(result);
+}
+
+
+void MoveForward(int steps, int mspeed) 
 {
+   counter_A = 0;  
+   Forward();
+   
+  
+   while (steps > counter_A ) {
+   
+    if (steps > counter_A) {
+    analogWrite(ena, mspeed);
+    } else {
+    analogWrite(ena, 0);
+    }
+   
+   }
+    
+  
+  analogWrite(ena, 0);
+  analogWrite(enb, 0);
+
