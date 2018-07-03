@@ -143,3 +143,32 @@ Serial.begin(9600);
 pinMode(in1, OUTPUT);//left side 
 pinMode(in2, OUTPUT);//left 
 
+if (readchar=='f')
+  
+  {
+    delay(10000);
+    float m = Serial.read();
+ MoveForward(CMtoSteps(m), 255);    
+   
+    
+  Serial.println("result");
+ Serial.println(CMtoSteps(m));
+ }
+
+ if (readchar=='b')
+  {
+        delay(10000);
+
+   float m = Serial.read();
+    MoveReverse(CMtoSteps(m),255);
+
+  Serial.println("result");
+ Serial.println(CMtoSteps(m));
+  }
+  
+}
+
+       Serial.println(counter_A);
+
+  
+  }
