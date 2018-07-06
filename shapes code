@@ -65,8 +65,21 @@ void loop(){
   digitalWrite(in3,LOW);
   digitalWrite(in4,HIGH);
   delay(600);
-
   analogWrite(ena,100);
+  analogWrite(enb,100);
+  digitalWrite(in1,LOW);
+  digitalWrite(in2,HIGH);
+  digitalWrite(in3,LOW);
+  digitalWrite(in4,HIGH);
+  delay(2000);
+  analogWrite(ena,100);
+  analogWrite(enb,100);
+  digitalWrite(in1,LOW);
+  digitalWrite(in2,LOW);
+  digitalWrite(in3,LOW);
+  digitalWrite(in4,HIGH);
+  delay(600)
+analogWrite(ena,100);
   analogWrite(enb,100);
   digitalWrite(in1,LOW);
   digitalWrite(in2,HIGH);
@@ -80,4 +93,26 @@ void loop(){
   digitalWrite(in2,LOW);
   digitalWrite(in3,LOW);
   digitalWrite(in4,HIGH);
-  delay(600)
+  delay(600)analogWrite(ena,100);
+  analogWrite(enb,100);
+  digitalWrite(in1,LOW);
+  digitalWrite(in2,HIGH);
+  digitalWrite(in3,LOW);
+  digitalWrite(in4,HIGH);
+  delay(2000);
+  
+  analogWrite(ena,100);
+  analogWrite(enb,100);
+  digitalWrite(in1,LOW);
+  digitalWrite(in2,LOW);
+  digitalWrite(in3,LOW);
+  digitalWrite(in4,HIGH);
+  delay(600);
+
+  analogWrite(ena,100);
+  analogWrite(enb,100);
+  digitalWrite(in1,LOW);
+  digitalWrite(in2,HIGH);
+  digitalWrite(in3,LOW);
+  digitalWrite(in4,HIGH);
+  delay(2000);
