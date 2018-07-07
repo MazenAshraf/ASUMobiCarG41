@@ -259,3 +259,92 @@ if(readchar=='F')
 if(readchar=='S')
   Stop();
   
+/*if (readchar=='a')
+  
+  {
+    delay(10000);
+    float m = Serial.read();//angle
+    delay(2000);
+    float r=Serial.read();//raduis
+//(m/360)*(2*3.14*r)
+  MoveLeft(CMtoSteps(((m/360)*(2*3.14*r))), 255);
+     
+   
+  }
+  */
+    
+  s=" ";
+ }
+
+//===================================================================================
+  if (readchar=='R')
+{
+  //infinty loop 
+
+   analogWrite(ena,200);
+ analogWrite(enb,80);
+ digitalWrite(in1,LOW);
+ digitalWrite(in2,HIGH);
+ digitalWrite(in3,LOW);
+ digitalWrite(in4,HIGH);
+ delay(4000);
+
+ analogWrite(ena,70);
+ analogWrite(enb,220);
+ digitalWrite(in1,LOW);
+ digitalWrite(in2,HIGH);
+ digitalWrite(in3,LOW);
+ digitalWrite(in4,HIGH);
+ delay(4400);
+
+  analogWrite(ena,90);
+ analogWrite(enb,220);
+ digitalWrite(in1,LOW);
+ digitalWrite(in2,LOW);
+ digitalWrite(in3,LOW);
+ digitalWrite(in4,LOW);
+ delay(25000);
+
+ //rectangle 
+ analogWrite(ena,100);
+  analogWrite(enb,100);
+  digitalWrite(in1,LOW);
+  digitalWrite(in2,HIGH);
+  digitalWrite(in3,LOW);
+  digitalWrite(in4,HIGH);
+  delay(2000);
+  
+  analogWrite(ena,100);
+  analogWrite(enb,100);
+  digitalWrite(in1,LOW);
+  digitalWrite(in2,LOW);
+  digitalWrite(in3,LOW);
+  digitalWrite(in4,HIGH);
+  delay(600);
+
+  analogWrite(ena,100);
+  analogWrite(enb,100);
+  digitalWrite(in1,LOW);
+  digitalWrite(in2,HIGH);
+  digitalWrite(in3,LOW);
+  digitalWrite(in4,HIGH);
+  delay(2000);
+  
+  analogWrite(ena,100);
+  analogWrite(enb,100);
+  digitalWrite(in1,LOW);
+  digitalWrite(in2,LOW);
+  digitalWrite(in3,LOW);
+  digitalWrite(in4,HIGH);
+  delay(600);
+
+  analogWrite(ena,100);
+  analogWrite(enb,100);
+  digitalWrite(in1,LOW);
+  digitalWrite(in2,HIGH);
+  digitalWrite(in3,LOW);
+  digitalWrite(in4,HIGH);
+  delay(2000);
+  
+  analogWrite(ena,100);
+  
