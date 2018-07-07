@@ -360,3 +360,182 @@ void MoveReverse(int steps, int mspeed)
 
 void setup()
 
+{
+Serial.begin(9600);
+pinMode(in1, OUTPUT);//left side 
+pinMode(in2, OUTPUT);//left 
+pinMode(in3, OUTPUT);//right 
+pinMode(in4, OUTPUT);//right 
+pinMode(ena, OUTPUT);//enable a  left
+pinMode(enb, OUTPUT);//enable b   right
+pinMode(trigPin, OUTPUT); // Sets the trigPin as an Output
+pinMode(echoPin, INPUT); // Sets the echoPin as an Input
+pinMode(MOTOR_A, INPUT_PULLUP);//enable b   right
+pinMode(S1, INPUT);//LINEFOLLOWER
+pinMode(S2, INPUT);
+pinMode(S3,INPUT);
+
+
+pinMode(13,INPUT);
+
+
+}
+void loop()
+{
+  digitalWrite(trigPin, LOW);
+delayMicroseconds(2);
+// Sets the trigPin on HIGH state for 10 micro seconds
+digitalWrite(trigPin, HIGH);
+delayMicroseconds(10);
+digitalWrite(trigPin, LOW);
+// Reads the echoPin, returns the sound wave travel time in microseconds
+duration = pulseIn(echoPin, HIGH);
+// Calculating the distance
+distance= duration*0.034/2;
+if(distance<= 12)
+{
+Stop();
+}
+else{
+if(Serial.available()>0)
+{
+readchar=Serial.read();
+
+if(readchar=='B')
+ Backward();
+  
+
+if(readchar=='F')
+  Forward();
+
+ 
+  if(readchar=='R')
+      Right();
+   
+  if(readchar=='L')
+    Left();
+
+  
+if(readchar=='S')
+  Stop();
+  
+
+  if (readchar=='f')
+  
+  {
+        Serial.println("helloogikfjhcjhjhv");
+    delay(5000);
+    while(Serial.available()>0)
+{
+      r=Serial.read();
+          Serial.println(r);
+          if(r=='m')
+          {break;}
+          else{
+            s=s+r;
+            }
+}
+int m= s.toInt();
+
+          Serial.println("mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm");
+
+          Serial.println(m);
+
+ MoveForward(CMtoSteps(m), 80);    
+   
+    
+  Serial.println("result");
+  s=" ";
+ }
+
+ if (readchar=='b')
+  {
+         Serial.println("helloogikfjhcjhjhv");
+    delay(5000);
+    while(Serial.available()>0)
+{
+      r=Serial.read();
+          Serial.println(r);
+          if(r=='m')
+          {break;}
+          else{
+            s=s+r;
+            }
+}
+int m= s.toInt();
+
+          Serial.println("mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm");
+
+          Serial.println(m);
+
+   MoveReverse(CMtoSteps(m),80);
+
+  Serial.println("result");
+  s=" ";
+  }
+  
+if (readchar=='a')
+  
+  {
+        Serial.println("helloogikfjhcjhjhv");
+    delay(5000);
+    while(Serial.available()>0)
+{
+      r=Serial.read();//angle
+          Serial.println(r);
+          if(r=='m')
+          {break;}
+          else{
+            s=s+r;
+            }
+           
+            
+        
+}
+int m= s.toInt();
+          Serial.println("mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm");
+          Serial.println(m);
+          
+    analogWrite(ena,150);         
+  analogWrite(enb,150);
+  digitalWrite(in1,LOW);
+  digitalWrite(in2,LOW);
+  digitalWrite(in3,HIGH);
+  digitalWrite(in4,LOW);
+  delay(m*0.0064);
+
+
+ //x*0.0064
+           Forward();
+           delay(500); 
+  s=" ";
+ }
+
+//===================================================================================
+  if (readchar=='K')
+{
+  //infinty loop 
+
+   analogWrite(ena,200);
+ analogWrite(enb,80);
+ digitalWrite(in1,LOW);
+ digitalWrite(in2,HIGH);
+ digitalWrite(in3,LOW);
+ digitalWrite(in4,HIGH);
+ delay(4000);
+
+ analogWrite(ena,70);
+ analogWrite(enb,220);
+ digitalWrite(in1,LOW);
+ digitalWrite(in2,HIGH);
+ digitalWrite(in3,LOW);
+ digitalWrite(in4,HIGH);
+ delay(4400);
+
+  analogWrite(ena,90);
+ analogWrite(enb,220);
+ digitalWrite(in1,LOW);
+ digitalWrite(in2,LOW);
+ digitalWrite(in3,LOW);
+ digitalWrite(in4,LOW);
+ delay(25000);
